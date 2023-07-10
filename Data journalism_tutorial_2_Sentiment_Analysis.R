@@ -54,7 +54,9 @@ Emma_sentiment <- tidy_data %>%
   spread(sentiment, n, fill = 0) %>%
   mutate(sentiment = positive - negative)
 
-
+#count(book = "Emma" , index = linenumber %/% 80, sentiment) %>%: 
+#The count() function is used here to count the number of positive and negative words in the book "Emma". 
+#The index is created by integer dividing the linenumber by 80, which groups every 80 lines together. Essentially, this creates sections of the book, each containing 80 lines, and computes the sentiment counts within these sections.
 #In the next step, we will visualize the words present in the book “Emma” based on their corrosponding positive and negative scores.
 library(ggplot2)
 
@@ -83,6 +85,7 @@ counting_words %>%
   coord_flip() +
   labs(y = "Sentiment Score")
 
+#mutate(n = ifelse(sentiment == "negative", -n, n)) %>%: This line creates a new column n (or modifies the existing one) which contains the count of the word. If the sentiment of the word is "negative", it assigns the count a negative value. This is so that the negative sentiments can be visualized below the x-axis in the bar chart.
 
 #In the final visualization, let us create a wordcloud that will delineate the most recurring positive and negative words. 
 #In particular, we will use the comparision.cloud() function to plot both negative and positive words in a single wordcloud as follows:
